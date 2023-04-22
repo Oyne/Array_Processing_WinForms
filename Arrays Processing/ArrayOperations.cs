@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Arrays_Processing
 {
-    internal class ArrayOperations
+    public class ArrayOperations
     {
         /// <summary>
         /// Minimum number for third operation to check.
@@ -52,7 +52,7 @@ namespace Arrays_Processing
         /// </summary>
         public void Clear()
         {
-            _array = new int[0];
+            _array = null;
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Arrays_Processing
         /// <summary>
         /// Find min, max element of array and median.
         /// </summary>
-        /// <returns>min, max, median.</returns>
+        /// <returns>Min, max, median.</returns>
         public int[] OperationOne()
         {
             int max, min, med;
@@ -113,9 +113,9 @@ namespace Arrays_Processing
 
         /// <summary>
         /// Calculate sum and number of elements of the array, 
-        /// in which number created from last and third from end number, element also must be even.
+        /// in which number created from last and third from end digits, element also must be even.
         /// </summary>
-        /// <returns>number, sum.</returns>
+        /// <returns>Number, sum.</returns>
         public int[] OperationThree()
         {
             int count, sum;
@@ -136,10 +136,10 @@ namespace Arrays_Processing
         }
 
         /// <summary>
-        /// Calculates sum of two first number of a number
+        /// Calculates sum of two first digits of a number
         /// </summary>
         /// <param name="number">number</param>
-        /// <returns></returns>
+        /// <returns>Sum of two first digits of a number</returns>
         private int TwoFirst(int number)
         {
             while (number >= 100)
@@ -150,6 +150,11 @@ namespace Arrays_Processing
             return number / 10 % 10 + number % 10;
         }
 
+        /// <summary>
+        /// Calculate sum and number of elements of the array, 
+        /// in which number created from first and second digit, element also divisible by 5
+        /// </summary>
+        /// <returns>Number, sum.</returns>
         public int[] OperationFour()
         {
             int count, sum;
