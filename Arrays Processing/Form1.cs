@@ -9,7 +9,7 @@ namespace Arrays_Processing
         int column_count = 2;
         ArrayOperations array = new ArrayOperations();
         string? file_name { get; set; }
-
+        int[] res;
 
         public Form1()
         {
@@ -26,22 +26,37 @@ namespace Arrays_Processing
             ImportFileDialog.Title = "Import file";
 
             if (ImportFileDialog.ShowDialog() == DialogResult.OK)
-                file_name = ImportFileDialog.FileName;
-            try
             {
+                file_name = ImportFileDialog.FileName;
                 string json = File.ReadAllText(file_name);
-                array.Values = JsonSerializer.Deserialize<int[]>(json);
-            }
-            catch (Exception ex)
-            { MessageBox.Show(ex.ToString(), "Excpetion"); }
-
-            if (array != null)
+                array.Value = JsonSerializer.Deserialize<int[]>(json);
                 ArrayOutput();
+            }
         }
 
         private void ExportButton_Click(object sender, EventArgs e)
         {
 
+            ExportFileDialog.InitialDirectory = "Desktop";
+            ExportFileDialog.Title = "Export file";
+            ExportFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+            ExportFileDialog.AddExtension = true;
+
+            if (ExportFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                file_name = ExportFileDialog.FileName;
+                string json = JsonSerializer.Serialize(array.Value);
+                File.WriteAllText(file_name, json);
+            }
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            if (file_name != null)
+            {
+                string json = JsonSerializer.Serialize(array.Value);
+                File.WriteAllText(file_name, json);
+            }
         }
 
         private void ArrayOutput()
@@ -63,16 +78,19 @@ namespace Arrays_Processing
                 dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
 
-            for (int i = 0; i < array.Values.Length; i++)
+            for (int i = 0; i < array.Value.Length; i++)
             {
-                ArrayDataGridView.Rows.Add(i.ToString(), array.Values[i].ToString());
+                ArrayDataGridView.Rows.Add(i.ToString(), array.Value[i].ToString());
             }
         }
 
         private void GenerateButton_Click(object sender, EventArgs e)
         {
-            array.GenerateArray(Convert.ToInt32(SizeNumericUpDown.Value), Convert.ToInt32(MinNumericUpDown.Value), Convert.ToInt32(MaxNumericUpDown.Value));
-            ArrayOutput();
+            if (SizeNumericUpDown.Value > 0)
+            {
+                array.GenerateArray(Convert.ToInt32(SizeNumericUpDown.Value), Convert.ToInt32(MinNumericUpDown.Value), Convert.ToInt32(MaxNumericUpDown.Value));
+                ArrayOutput();
+            }
         }
 
         private void MinNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -90,6 +108,37 @@ namespace Arrays_Processing
         {
             ArrayDataGridView.RowCount = 0;
             array.Clear();
+            ResultTextBox.Clear();
+        }
+
+        private void OperationButton_Click(object sender, EventArgs e)
+        {
+            if (array.Value.Length > 0)
+            {
+                if (OperationOneButton.Checked)
+                {
+                    res = array.OperationOne();
+                    ResultTextBox.Text = "Min = " + res[0].ToString() + ", Max = " + res[1].ToString() + ", Median = " + res[2].ToString();
+                }
+                else if (OperationTwoButton.Checked)
+                {
+                    array.OperationTwo();
+                    ResultTextBox.Text = "Array was sorted";
+                    ArrayOutput();
+                }
+                else if (OperationThreeButton.Checked)
+                {
+                    res = array.OperationThree();
+                    ResultTextBox.Text = "Count = " + res[0].ToString() + ", Sum = " + res[1].ToString();
+
+                }
+                else if (OperationFourButton.Checked)
+                {
+                    res = array.OperationFour();
+                    ResultTextBox.Text = "Count = " + res[0].ToString() + ", Sum = " + res[1].ToString();
+                }
+            }
+
         }
     }
 }

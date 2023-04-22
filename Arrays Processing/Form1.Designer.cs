@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
@@ -55,6 +56,8 @@
             ResultTextBox = new TextBox();
             ImportFileDialog = new OpenFileDialog();
             ArrayDataGridView = new DataGridView();
+            ExportFileDialog = new SaveFileDialog();
+            ToolTip = new ToolTip(components);
             OperationsGroupBox.SuspendLayout();
             ArrayOperationsGroupBox.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -85,6 +88,7 @@
             ExportButton.Name = "ExportButton";
             ExportButton.Size = new Size(59, 64);
             ExportButton.TabIndex = 4;
+            ToolTip.SetToolTip(ExportButton, "Export file");
             ExportButton.UseVisualStyleBackColor = false;
             ExportButton.Click += ExportButton_Click;
             // 
@@ -98,6 +102,7 @@
             ImportButton.Name = "ImportButton";
             ImportButton.Size = new Size(59, 64);
             ImportButton.TabIndex = 5;
+            ToolTip.SetToolTip(ImportButton, "Import file");
             ImportButton.UseVisualStyleBackColor = false;
             ImportButton.Click += ImportButton_Click;
             // 
@@ -111,7 +116,9 @@
             SaveButton.Name = "SaveButton";
             SaveButton.Size = new Size(59, 64);
             SaveButton.TabIndex = 6;
+            ToolTip.SetToolTip(SaveButton, "Save file");
             SaveButton.UseVisualStyleBackColor = false;
+            SaveButton.Click += SaveButton_Click;
             // 
             // OperationsGroupBox
             // 
@@ -135,8 +142,8 @@
             OperationFourButton.Name = "OperationFourButton";
             OperationFourButton.Size = new Size(122, 27);
             OperationFourButton.TabIndex = 3;
-            OperationFourButton.TabStop = true;
             OperationFourButton.Text = "Operation 4";
+            ToolTip.SetToolTip(OperationFourButton, "Calculate sum and number of elements of the array, in which number created from first and second digit, element also divisible by 5");
             OperationFourButton.UseVisualStyleBackColor = true;
             // 
             // OperationThreeButton
@@ -147,8 +154,8 @@
             OperationThreeButton.Name = "OperationThreeButton";
             OperationThreeButton.Size = new Size(122, 27);
             OperationThreeButton.TabIndex = 2;
-            OperationThreeButton.TabStop = true;
             OperationThreeButton.Text = "Operation 3";
+            ToolTip.SetToolTip(OperationThreeButton, "Calculate sum and number of elements of the array, in which number created from last and third from end digit, element also must be even");
             OperationThreeButton.UseVisualStyleBackColor = true;
             // 
             // OperationTwoButton
@@ -159,13 +166,14 @@
             OperationTwoButton.Name = "OperationTwoButton";
             OperationTwoButton.Size = new Size(122, 27);
             OperationTwoButton.TabIndex = 1;
-            OperationTwoButton.TabStop = true;
             OperationTwoButton.Text = "Operation 2";
+            ToolTip.SetToolTip(OperationTwoButton, "Sort elements in descending order");
             OperationTwoButton.UseVisualStyleBackColor = true;
             // 
             // OperationOneButton
             // 
             OperationOneButton.AutoSize = true;
+            OperationOneButton.Checked = true;
             OperationOneButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             OperationOneButton.Location = new Point(7, 26);
             OperationOneButton.Name = "OperationOneButton";
@@ -173,6 +181,7 @@
             OperationOneButton.TabIndex = 0;
             OperationOneButton.TabStop = true;
             OperationOneButton.Text = "Operation 1";
+            ToolTip.SetToolTip(OperationOneButton, "Find min, max element of array and median");
             OperationOneButton.UseVisualStyleBackColor = true;
             // 
             // ArrayOperationsGroupBox
@@ -196,7 +205,9 @@
             OperationButton.Size = new Size(186, 29);
             OperationButton.TabIndex = 9;
             OperationButton.Text = "Operation";
+            ToolTip.SetToolTip(OperationButton, "Perform chosen operation");
             OperationButton.UseVisualStyleBackColor = true;
+            OperationButton.Click += OperationButton_Click;
             // 
             // ClearButton
             // 
@@ -206,6 +217,7 @@
             ClearButton.Size = new Size(186, 29);
             ClearButton.TabIndex = 1;
             ClearButton.Text = "Clear";
+            ToolTip.SetToolTip(ClearButton, "Clears everything");
             ClearButton.UseVisualStyleBackColor = true;
             ClearButton.Click += ClearButton_Click;
             // 
@@ -217,6 +229,7 @@
             GenerateButton.Size = new Size(186, 29);
             GenerateButton.TabIndex = 0;
             GenerateButton.Text = "Generate";
+            ToolTip.SetToolTip(GenerateButton, "Generates array with specified size, min and max value");
             GenerateButton.UseVisualStyleBackColor = true;
             GenerateButton.Click += GenerateButton_Click;
             // 
@@ -250,8 +263,8 @@
             MaxNumericUpDown.BackColor = Color.FromArgb(64, 64, 64);
             MaxNumericUpDown.ForeColor = Color.FromArgb(255, 224, 192);
             MaxNumericUpDown.Location = new Point(57, 117);
+            MaxNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             MaxNumericUpDown.Name = "MaxNumericUpDown";
-            MaxNumericUpDown.ReadOnly = true;
             MaxNumericUpDown.Size = new Size(135, 27);
             MaxNumericUpDown.TabIndex = 7;
             MaxNumericUpDown.ValueChanged += MaxNumericUpDown_ValueChanged;
@@ -271,7 +284,6 @@
             MinNumericUpDown.ForeColor = Color.FromArgb(255, 224, 192);
             MinNumericUpDown.Location = new Point(57, 69);
             MinNumericUpDown.Name = "MinNumericUpDown";
-            MinNumericUpDown.ReadOnly = true;
             MinNumericUpDown.Size = new Size(135, 27);
             MinNumericUpDown.TabIndex = 5;
             MinNumericUpDown.ValueChanged += MinNumericUpDown_ValueChanged;
@@ -291,7 +303,6 @@
             SizeNumericUpDown.ForeColor = Color.FromArgb(255, 224, 192);
             SizeNumericUpDown.Location = new Point(57, 21);
             SizeNumericUpDown.Name = "SizeNumericUpDown";
-            SizeNumericUpDown.ReadOnly = true;
             SizeNumericUpDown.Size = new Size(135, 27);
             SizeNumericUpDown.TabIndex = 3;
             // 
@@ -315,10 +326,6 @@
             ResultTextBox.ReadOnly = true;
             ResultTextBox.Size = new Size(547, 27);
             ResultTextBox.TabIndex = 11;
-            // 
-            // ImportFileDialog
-            // 
-            ImportFileDialog.FileName = "openFileDialog1";
             // 
             // ArrayDataGridView
             // 
@@ -414,5 +421,7 @@
         private Label ResultLabel;
         private TextBox ResultTextBox;
         private OpenFileDialog ImportFileDialog;
+        private SaveFileDialog ExportFileDialog;
+        private ToolTip ToolTip;
     }
 }
