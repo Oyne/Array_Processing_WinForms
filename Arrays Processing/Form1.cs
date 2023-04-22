@@ -6,9 +6,24 @@ namespace Arrays_Processing
 {
     public partial class Form1 : Form
     {
-        int column_count = 2;
+        /// <summary>
+        /// Number of columns.
+        /// </summary>
+        int column_count = 2; 
+
+        /// <summary>
+        /// Instance of ArrayOperations.
+        /// </summary>
         ArrayOperations array = new ArrayOperations();
+
+        /// <summary>
+        /// Nmae of last used file.
+        /// </summary>
         string? file_name { get; set; }
+
+        /// <summary>
+        /// Result of operations.
+        /// </summary>
         int[] res;
 
         public Form1()
@@ -59,6 +74,9 @@ namespace Arrays_Processing
             }
         }
 
+        /// <summary>
+        /// Prints array in DataGridView.
+        /// </summary>
         private void ArrayOutput()
         {
             ArrayDataGridView.RowCount = 0;
