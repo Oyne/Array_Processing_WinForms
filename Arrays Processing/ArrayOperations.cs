@@ -9,14 +9,37 @@ namespace Arrays_Processing
 {
     internal class ArrayOperations
     {
+        /// <summary>
+        /// Minimum number for third operation to check.
+        /// </summary>
         private int _op3_min = 99;
+
+        /// <summary>
+        /// Maximum number for third operation to check.
+        /// </summary>
         private int _op3_max = 10000;
+
+        /// <summary>
+        /// Minimum number for fourth operation to check.
+        /// </summary>
         private int _op4_min = 9;
 
+        /// <summary>
+        /// Array of integers.
+        /// </summary>
         private int[]? _array = null;
 
+        /// <summary>
+        /// Array property.
+        /// </summary>
         public int[] Value { get => _array; set => _array = value; }
 
+        /// <summary>
+        /// Generates array with specified values.
+        /// </summary>
+        /// <param name="size">Size of array.</param>
+        /// <param name="min">Min element of array.</param>
+        /// <param name="max">Max element of array.</param>
         public void GenerateArray(int size, int min, int max)
         {
             _array = new int[size];
@@ -24,11 +47,18 @@ namespace Arrays_Processing
             for (int i = 0; i < size; i++) _array[i] = random.Next(min, max + 1);
         }
 
+        /// <summary>
+        /// Clears array
+        /// </summary>
         public void Clear()
         {
             _array = new int[0];
         }
 
+        /// <summary>
+        /// Sorts array in ascending order.
+        /// </summary>
+        /// <returns>Sorted array.</returns>
         private int[] Sort()
         {
             int[] copy = _array;
@@ -46,6 +76,10 @@ namespace Arrays_Processing
             return copy;
         }
 
+        /// <summary>
+        /// Find min, max element of array and median.
+        /// </summary>
+        /// <returns>min, max, median.</returns>
         public int[] OperationOne()
         {
             int max, min, med;
@@ -68,12 +102,20 @@ namespace Arrays_Processing
             return res;
         }
 
+        /// <summary>
+        /// Sort elements in descending order.
+        /// </summary>
         public void OperationTwo()
         {
             _array = Sort();
             Array.Reverse(_array);
         }
 
+        /// <summary>
+        /// Calculate sum and number of elements of the array, 
+        /// in which number created from last and third from end number, element also must be even.
+        /// </summary>
+        /// <returns>number, sum.</returns>
         public int[] OperationThree()
         {
             int count, sum;
@@ -93,14 +135,19 @@ namespace Arrays_Processing
             return res;
         }
 
-        private int TwoFirst(int digit)
+        /// <summary>
+        /// Calculates sum of two first number of a number
+        /// </summary>
+        /// <param name="number">number</param>
+        /// <returns></returns>
+        private int TwoFirst(int number)
         {
-            while (digit >= 100)
+            while (number >= 100)
             {
-                digit /= 10;
+                number /= 10;
             }
 
-            return digit / 10 % 10 + digit % 10;
+            return number / 10 % 10 + number % 10;
         }
 
         public int[] OperationFour()
