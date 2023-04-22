@@ -380,6 +380,7 @@
             Controls.Add(ArayLabel);
             Controls.Add(ArrayDataGridView);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Form1";
             Text = "Arrays Processing";
