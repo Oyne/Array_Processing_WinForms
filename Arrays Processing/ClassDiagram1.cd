@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Arrays_Processing.ArrayOperations">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAIAAAAABAAAAAAAgIAQAAAAAIAAAAIAAEAgAAJCAAA=</HashCode>
+      <FileName>ArrayOperations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arrays_Processing.Form1">
+    <Position X="2.25" Y="0.5" Width="2.75" />
+    <Members>
+      <Field Name="ArayLabel" Hidden="true" />
+      <Field Name="ArrayDataGridView" Hidden="true" />
+      <Field Name="ArrayOperationsGroupBox" Hidden="true" />
+      <Field Name="ClearButton" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="ExportButton" Hidden="true" />
+      <Field Name="ExportFileDialog" Hidden="true" />
+      <Field Name="GenerateButton" Hidden="true" />
+      <Field Name="groupBox2" Hidden="true" />
+      <Field Name="ImportButton" Hidden="true" />
+      <Field Name="ImportFileDialog" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="MaxLabel" Hidden="true" />
+      <Field Name="MaxNumericUpDown" Hidden="true" />
+      <Field Name="MinLabel" Hidden="true" />
+      <Field Name="MinNumericUpDown" Hidden="true" />
+      <Field Name="OperationButton" Hidden="true" />
+      <Field Name="OperationFourButton" Hidden="true" />
+      <Field Name="OperationOneButton" Hidden="true" />
+      <Field Name="OperationsGroupBox" Hidden="true" />
+      <Field Name="OperationThreeButton" Hidden="true" />
+      <Field Name="OperationTwoButton" Hidden="true" />
+      <Field Name="ResultLabel" Hidden="true" />
+      <Field Name="ResultTextBox" Hidden="true" />
+      <Field Name="SaveButton" Hidden="true" />
+      <Field Name="SizeLabel" Hidden="true" />
+      <Field Name="SizeNumericUpDown" Hidden="true" />
+      <Field Name="ToolTip" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAUwgQEIiQABCAICArAAAgiAIEgAgCAiCALAAggQQA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arrays_Processing.Program">
+    <Position X="5.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arrays_Processing.Properties.Resources">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

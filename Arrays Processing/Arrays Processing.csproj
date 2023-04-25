@@ -8,7 +8,12 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <PackageIcon>noun-array-2732962.png</PackageIcon>
+    <ApplicationIcon>noun-array-2732962.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="noun-array-2732962.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\..\..\..\Downloads\noun-array-2732962.png">
