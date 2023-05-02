@@ -1,4 +1,4 @@
-# Array Processing project made by using C# and Windwos Forms
+# Array Processing project made by using C# and Windows Forms
 
 ![Arrays_Processing_rVDFCe094n](https://user-images.githubusercontent.com/91478447/233802023-9f8dc886-8f98-4efc-b08f-66eafde7bb26.png)
 
