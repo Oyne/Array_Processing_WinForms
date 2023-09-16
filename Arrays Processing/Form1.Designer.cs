@@ -37,6 +37,8 @@
             ImportButton = new Button();
             SaveButton = new Button();
             OperationsGroupBox = new GroupBox();
+            CLabel = new Label();
+            CNumericUpDown = new NumericUpDown();
             OperationFourButton = new RadioButton();
             OperationThreeButton = new RadioButton();
             OperationTwoButton = new RadioButton();
@@ -59,6 +61,7 @@
             ExportFileDialog = new SaveFileDialog();
             ToolTip = new ToolTip(components);
             OperationsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)CNumericUpDown).BeginInit();
             ArrayOperationsGroupBox.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MaxNumericUpDown).BeginInit();
@@ -84,7 +87,7 @@
             ExportButton.FlatAppearance.BorderSize = 0;
             ExportButton.FlatStyle = FlatStyle.Flat;
             ExportButton.Image = (Image)resources.GetObject("ExportButton.Image");
-            ExportButton.Location = new Point(504, 268);
+            ExportButton.Location = new Point(558, 268);
             ExportButton.Name = "ExportButton";
             ExportButton.Size = new Size(59, 64);
             ExportButton.TabIndex = 4;
@@ -98,7 +101,7 @@
             ImportButton.FlatAppearance.BorderSize = 0;
             ImportButton.FlatStyle = FlatStyle.Flat;
             ImportButton.Image = (Image)resources.GetObject("ImportButton.Image");
-            ImportButton.Location = new Point(434, 268);
+            ImportButton.Location = new Point(488, 268);
             ImportButton.Name = "ImportButton";
             ImportButton.Size = new Size(59, 64);
             ImportButton.TabIndex = 5;
@@ -112,7 +115,7 @@
             SaveButton.FlatAppearance.BorderSize = 0;
             SaveButton.FlatStyle = FlatStyle.Flat;
             SaveButton.Image = (Image)resources.GetObject("SaveButton.Image");
-            SaveButton.Location = new Point(575, 268);
+            SaveButton.Location = new Point(629, 268);
             SaveButton.Name = "SaveButton";
             SaveButton.Size = new Size(59, 64);
             SaveButton.TabIndex = 6;
@@ -122,6 +125,8 @@
             // 
             // OperationsGroupBox
             // 
+            OperationsGroupBox.Controls.Add(CLabel);
+            OperationsGroupBox.Controls.Add(CNumericUpDown);
             OperationsGroupBox.Controls.Add(OperationFourButton);
             OperationsGroupBox.Controls.Add(OperationThreeButton);
             OperationsGroupBox.Controls.Add(OperationTwoButton);
@@ -129,10 +134,30 @@
             OperationsGroupBox.ForeColor = Color.FromArgb(255, 224, 192);
             OperationsGroupBox.Location = new Point(434, 38);
             OperationsGroupBox.Name = "OperationsGroupBox";
-            OperationsGroupBox.Size = new Size(200, 214);
+            OperationsGroupBox.Size = new Size(300, 214);
             OperationsGroupBox.TabIndex = 7;
             OperationsGroupBox.TabStop = false;
             OperationsGroupBox.Text = "Operations";
+            // 
+            // CLabel
+            // 
+            CLabel.AutoSize = true;
+            CLabel.Location = new Point(135, 128);
+            CLabel.Name = "CLabel";
+            CLabel.Size = new Size(18, 20);
+            CLabel.TabIndex = 8;
+            CLabel.Text = "C";
+            // 
+            // CNumericUpDown
+            // 
+            CNumericUpDown.BackColor = Color.FromArgb(64, 64, 64);
+            CNumericUpDown.ForeColor = Color.FromArgb(255, 224, 192);
+            CNumericUpDown.Location = new Point(159, 126);
+            CNumericUpDown.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
+            CNumericUpDown.Minimum = new decimal(new int[] { 5000, 0, 0, int.MinValue });
+            CNumericUpDown.Name = "CNumericUpDown";
+            CNumericUpDown.Size = new Size(135, 27);
+            CNumericUpDown.TabIndex = 7;
             // 
             // OperationFourButton
             // 
@@ -143,8 +168,9 @@
             OperationFourButton.Size = new Size(122, 27);
             OperationFourButton.TabIndex = 3;
             OperationFourButton.Text = "Operation 4";
-            ToolTip.SetToolTip(OperationFourButton, "Calculate sum and number of elements of the array, in which number created from first and second digit, element also divisible by 5");
+            ToolTip.SetToolTip(OperationFourButton, "Определить количество простых чисел массива методом пробных делителей.");
             OperationFourButton.UseVisualStyleBackColor = true;
+            OperationFourButton.CheckedChanged += OperationFourButton_CheckedChanged;
             // 
             // OperationThreeButton
             // 
@@ -155,8 +181,9 @@
             OperationThreeButton.Size = new Size(122, 27);
             OperationThreeButton.TabIndex = 2;
             OperationThreeButton.Text = "Operation 3";
-            ToolTip.SetToolTip(OperationThreeButton, "Calculate sum and number of elements of the array, in which number created from last and third from end digit, element also must be even");
+            ToolTip.SetToolTip(OperationThreeButton, "Определить сумму и количество чисел больших С с нечетными номерами.");
             OperationThreeButton.UseVisualStyleBackColor = true;
+            OperationThreeButton.CheckedChanged += OperationThreeButton_CheckedChanged;
             // 
             // OperationTwoButton
             // 
@@ -167,8 +194,9 @@
             OperationTwoButton.Size = new Size(122, 27);
             OperationTwoButton.TabIndex = 1;
             OperationTwoButton.Text = "Operation 2";
-            ToolTip.SetToolTip(OperationTwoButton, "Sort elements in descending order");
+            ToolTip.SetToolTip(OperationTwoButton, "Отсортировать элементы массива по возрастанию.");
             OperationTwoButton.UseVisualStyleBackColor = true;
+            OperationTwoButton.CheckedChanged += OperationTwoButton_CheckedChanged;
             // 
             // OperationOneButton
             // 
@@ -181,8 +209,9 @@
             OperationOneButton.TabIndex = 0;
             OperationOneButton.TabStop = true;
             OperationOneButton.Text = "Operation 1";
-            ToolTip.SetToolTip(OperationOneButton, "Find min, max element of array and median");
+            ToolTip.SetToolTip(OperationOneButton, "Вычислить математическое ожидание и дисперсию массива.");
             OperationOneButton.UseVisualStyleBackColor = true;
+            OperationOneButton.CheckedChanged += OperationOneButton_CheckedChanged;
             // 
             // ArrayOperationsGroupBox
             // 
@@ -263,7 +292,8 @@
             MaxNumericUpDown.BackColor = Color.FromArgb(64, 64, 64);
             MaxNumericUpDown.ForeColor = Color.FromArgb(255, 224, 192);
             MaxNumericUpDown.Location = new Point(57, 117);
-            MaxNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            MaxNumericUpDown.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
+            MaxNumericUpDown.Minimum = new decimal(new int[] { 5000, 0, 0, int.MinValue });
             MaxNumericUpDown.Name = "MaxNumericUpDown";
             MaxNumericUpDown.Size = new Size(135, 27);
             MaxNumericUpDown.TabIndex = 7;
@@ -283,6 +313,8 @@
             MinNumericUpDown.BackColor = Color.FromArgb(64, 64, 64);
             MinNumericUpDown.ForeColor = Color.FromArgb(255, 224, 192);
             MinNumericUpDown.Location = new Point(57, 69);
+            MinNumericUpDown.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
+            MinNumericUpDown.Minimum = new decimal(new int[] { 5000, 0, 0, int.MinValue });
             MinNumericUpDown.Name = "MinNumericUpDown";
             MinNumericUpDown.Size = new Size(135, 27);
             MinNumericUpDown.TabIndex = 5;
@@ -324,7 +356,7 @@
             ResultTextBox.Location = new Point(81, 357);
             ResultTextBox.Name = "ResultTextBox";
             ResultTextBox.ReadOnly = true;
-            ResultTextBox.Size = new Size(547, 27);
+            ResultTextBox.Size = new Size(653, 27);
             ResultTextBox.TabIndex = 11;
             // 
             // ArrayDataGridView
@@ -368,7 +400,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(646, 413);
+            ClientSize = new Size(744, 413);
             Controls.Add(ResultTextBox);
             Controls.Add(ResultLabel);
             Controls.Add(groupBox2);
@@ -386,6 +418,7 @@
             Text = "Arrays Processing";
             OperationsGroupBox.ResumeLayout(false);
             OperationsGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)CNumericUpDown).EndInit();
             ArrayOperationsGroupBox.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
@@ -424,5 +457,7 @@
         private OpenFileDialog ImportFileDialog;
         private SaveFileDialog ExportFileDialog;
         private ToolTip ToolTip;
+        private Label CLabel;
+        private NumericUpDown CNumericUpDown;
     }
 }

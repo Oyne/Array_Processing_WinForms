@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -9,21 +10,6 @@ namespace Arrays_Processing
 {
     public class ArrayOperations
     {
-        /// <summary>
-        /// Minimum number for third operation to check.
-        /// </summary>
-        private int _op3_min = 99;
-
-        /// <summary>
-        /// Maximum number for third operation to check.
-        /// </summary>
-        private int _op3_max = 10000;
-
-        /// <summary>
-        /// Minimum number for fourth operation to check.
-        /// </summary>
-        private int _op4_min = 9;
-
         /// <summary>
         /// Array of integers.
         /// </summary>
@@ -77,101 +63,86 @@ namespace Arrays_Processing
         }
 
         /// <summary>
-        /// Find min, max element of array and median.
+        /// Вычислить математическое ожидание и дисперсию массива
         /// </summary>
         /// <returns>Min, max, median.</returns>
         public int[] OperationOne()
         {
-            int max, min, med;
-            max = min = _array[0];
+            int m, d;
+            m = 0;
             foreach (int i in _array)
             {
-                if (i > max) max = i;
-                if (i < min) min = i;
+                m += i;
             }
 
-            int[] tmp = Sort();
+            m /= _array.Length;
 
-            if (tmp.Length % 2 == 0)
-                med = tmp[tmp.Length - 1] / 2;
-            else
-                med = (tmp[(tmp.Length - 1) / 2] + tmp[tmp.Length / 2]) / 2;
+            int s = 0;
 
-            int[] res = {min, max,  med};
+            for (int i = 0; i < _array.Length; i++)
+            {
+                d = _array[i] - m;
+                s += d * d;
+            }
+            
+            d = s / _array.Length - 1;
+            int[] res = {m, d};
 
             return res;
         }
 
         /// <summary>
-        /// Sort elements in descending order.
+        /// Отсортировать элементы массива по возрастанию.
         /// </summary>
         public void OperationTwo()
         {
             _array = Sort();
-            Array.Reverse(_array);
         }
 
         /// <summary>
-        /// Calculate sum and number of elements of the array, 
-        /// in which number created from last and third from end digits, element also must be even.
+        /// Определить сумму и количество чисел больших С с нечетными номерами
         /// </summary>
         /// <returns>Number, sum.</returns>
-        public int[] OperationThree()
+        public int[] OperationThree(int C)
         {
             int count, sum;
             count = sum = 0;
 
-            foreach (int i in _array)
+            for (int i = 0; i < _array.Length; i++)
             {
-                if (i > _op3_min && i < _op3_max)
-                    if ((i % 10 + i / 100 % 10) % 2 == 0) 
-                    {
-                        sum += i;
-                        count++;
-                    }
+                if (_array[i] > C && i % 2 != 0)
+                {
+                    count++;
+                    sum += _array[i];
+                }
             }
 
             int[] res = { count, sum };
             return res;
         }
 
-        /// <summary>
-        /// Calculates sum of two first digits of a number
-        /// </summary>
-        /// <param name="number">number</param>
-        /// <returns>Sum of two first digits of a number</returns>
-        private int TwoFirst(int number)
-        {
-            while (number >= 100)
-            {
-                number /= 10;
-            }
-
-            return number / 10 % 10 + number % 10;
-        }
 
         /// <summary>
-        /// Calculate sum and number of elements of the array, 
-        /// in which number created from first and second digit, element also divisible by 5
+        /// Определить количество простых чисел массива методом пробных делителей.
         /// </summary>
         /// <returns>Number, sum.</returns>
-        public int[] OperationFour()
+        public int OperationFour()
         {
-            int count, sum;
-            count = sum = 0;
-
-            foreach (int i in _array)
-            {
-                if (i > _op4_min)
-                    if (TwoFirst(i) % 5 == 0)
+            int count = 0;
+            for (int i = 0; i < _array.Length; i++)
+            {     
+                    bool flag = true;
+                    for (int el = 1; el <= Math.Sqrt(_array[i]); el++)
                     {
-                        sum += i;
-                        count++;
+                        if (_array[i] % el == 0 && el != 1)
+                        {
+                            flag = false;
+                            break;
+                        }
                     }
+                if (flag) count++;
             }
-
-            int[] res = { count, sum };
-            return res;
+            return count;
         }
     }
 }

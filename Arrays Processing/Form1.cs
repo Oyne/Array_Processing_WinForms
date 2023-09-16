@@ -9,7 +9,7 @@ namespace Arrays_Processing
         /// <summary>
         /// Number of columns.
         /// </summary>
-        int column_count = 2; 
+        int column_count = 2;
 
         /// <summary>
         /// Instance of ArrayOperations.
@@ -29,6 +29,8 @@ namespace Arrays_Processing
         public Form1()
         {
             InitializeComponent();
+            CLabel.Visible = false;
+            CNumericUpDown.Visible = false;
         }
 
         private void ImportButton_Click(object sender, EventArgs e)
@@ -113,12 +115,12 @@ namespace Arrays_Processing
 
         private void MinNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (MinNumericUpDown.Value > MaxNumericUpDown.Value) { MaxNumericUpDown.Value++; }
+            if (MinNumericUpDown.Value > MaxNumericUpDown.Value) { MaxNumericUpDown.Value = MinNumericUpDown.Value; }
         }
 
         private void MaxNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (MaxNumericUpDown.Value < MinNumericUpDown.Value) { MinNumericUpDown.Value--; }
+            if (MaxNumericUpDown.Value < MinNumericUpDown.Value) { MinNumericUpDown.Value = MaxNumericUpDown.Value; }
 
         }
 
@@ -136,7 +138,7 @@ namespace Arrays_Processing
                 if (OperationOneButton.Checked)
                 {
                     res = array.OperationOne();
-                    ResultTextBox.Text = "Min = " + res[0].ToString() + ", Max = " + res[1].ToString() + ", Median = " + res[2].ToString();
+                    ResultTextBox.Text = "M = " + res[0].ToString() + ", D = " + res[1].ToString();
                 }
                 else if (OperationTwoButton.Checked)
                 {
@@ -146,17 +148,40 @@ namespace Arrays_Processing
                 }
                 else if (OperationThreeButton.Checked)
                 {
-                    res = array.OperationThree();
+                    res = array.OperationThree((int)CNumericUpDown.Value);
                     ResultTextBox.Text = "Count = " + res[0].ToString() + ", Sum = " + res[1].ToString();
 
                 }
                 else if (OperationFourButton.Checked)
                 {
-                    res = array.OperationFour();
-                    ResultTextBox.Text = "Count = " + res[0].ToString() + ", Sum = " + res[1].ToString();
+                    ResultTextBox.Text = "Count = " + array.OperationFour().ToString();
                 }
             }
 
+        }
+
+        private void OperationThreeButton_CheckedChanged(object sender, EventArgs e)
+        {
+            CLabel.Visible = true;
+            CNumericUpDown.Visible = true;
+        }
+
+        private void OperationOneButton_CheckedChanged(object sender, EventArgs e)
+        {
+            CLabel.Visible = false;
+            CNumericUpDown.Visible = false;
+        }
+
+        private void OperationTwoButton_CheckedChanged(object sender, EventArgs e)
+        {
+            CLabel.Visible = false;
+            CNumericUpDown.Visible = false;
+        }
+
+        private void OperationFourButton_CheckedChanged(object sender, EventArgs e)
+        {
+            CLabel.Visible = false;
+            CNumericUpDown.Visible = false;
         }
     }
 }
